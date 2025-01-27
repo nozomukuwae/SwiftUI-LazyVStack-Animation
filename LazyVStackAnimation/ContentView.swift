@@ -8,14 +8,34 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var numbers = Array(0..<3)
+    
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+            LazyVStack {
+                Button("Append") {
+                    let lastValue = numbers.last ?? -1
+                    numbers.append(lastValue+1)
+                }
+                .padding()
+                
+                ForEach(numbers, id: \.self) { number in
+                    Text(String(number))
+                        .padding()
+                        .background(
+                            Color.mint,
+                            ignoresSafeAreaEdges: .horizontal
+                        )
+                        .onTapGesture {
+                            if let index = numbers.firstIndex(where: { $0 == number }) {
+                                numbers.remove(at: index)
+                            }
+                        }
+                }
+            }
+
+            Spacer()
         }
-        .padding()
     }
 }
 
