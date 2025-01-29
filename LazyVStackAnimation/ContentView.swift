@@ -26,12 +26,14 @@ struct ContentView: View {
                             Color.mint,
                             ignoresSafeAreaEdges: .horizontal
                         )
+                        .transition(.opacity)
                         .onTapGesture {
                             if let index = numbers.firstIndex(where: { $0 == number }) {
-                                numbers.remove(at: index)
+                                _ = withAnimation(.easeIn(duration: 1.0)) {
+                                    numbers.remove(at: index)
+                                }
                             }
                         }
-                        .animation(.easeIn(duration: 1.0), value: numbers)
                 }
             }
 
