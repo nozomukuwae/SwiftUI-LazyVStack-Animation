@@ -31,9 +31,9 @@ struct ContentView: View {
                                 numbers.remove(at: index)
                             }
                         }
+                        .animation(.easeIn(duration: 1.0), value: numbers)
                 }
             }
-            .animation(.easeIn(duration: 1.0), value: numbers)
 
             Spacer()
         }
