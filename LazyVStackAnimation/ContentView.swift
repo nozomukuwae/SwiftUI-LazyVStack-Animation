@@ -33,6 +33,7 @@ struct ContentView: View {
                         }
                 }
             }
+            .animation(.easeIn(duration: 1.0), value: numbers)
 
             Spacer()
         }
